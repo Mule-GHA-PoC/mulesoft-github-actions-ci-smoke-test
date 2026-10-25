@@ -1,0 +1,58 @@
+name: Mule CI
+
+# Caller for the reusable framework pipeline in nsripriya731/mulesoft-github-actions.
+#
+#   pull_request -> develop|main : checks only (no secrets, no publish, no deploy)
+#   push develop                 : checks, Exchange publish (dev version), auto-deploy to Sandbox
+#   push main                    : checks only
+#   push tag vX.Y.Z              : checks, immutable release publish to Exchange (no deploy)
+#
+# Required status checks are the jobs of the "pr-checks" caller, named "pr-checks / <job>".
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+    tags: ['v*.*.*']
+
+permissions:
+  contents: read
+
+# Pull requests supersede older runs of the same PR. Pushes are never cancelled, so a deployment
+# already in progress is not interrupted by a newer commit.
+concurrency:
+  group: mule-ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  pr-checks:
+    if: ${{ github.event_name == 'pull_request' }}
+    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    with:
+      publish: false
+      deploy: false
+
+  develop:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
+    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    with:
+      publish: true
+      deploy: true
+      deploy_environment: Sandbox
+    secrets: inherit
+
+  main-checks:
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    with:
+      publish: false
+      deploy: false
+
+  release:
+    if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
+    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    with:
+      publish: true
+      deploy: false
+    secrets: inherit

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+
+    <!-- Heartbeat flow: no HTTP listener, no external calls; logs once per minute. -->
+    <flow name="heartbeat-flow">
+        <scheduler>
+            <scheduling-strategy>
+                <fixed-frequency frequency="60000"/>
+            </scheduling-strategy>
+        </scheduler>
+        <flow-ref name="log-message-sub-flow"/>
+    </flow>
+
+    <sub-flow name="log-message-sub-flow">
+        <logger level="INFO" message="mulesoft-github-actions CI smoke test heartbeat"/>
+    </sub-flow>
+
+</mule>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+      xmlns:munit="http://www.mulesoft.org/schema/mule/munit"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+                          http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd">
+
+    <munit:config name="logger-app-test-suite.xml"/>
+
+    <munit:test name="log-message-sub-flow-keeps-payload-test"
+                description="The logging sub-flow must leave the payload unchanged">
+        <munit:behavior>
+            <set-payload value="smoke-test-payload"/>
+        </munit:behavior>
+        <munit:execution>
+            <flow-ref name="log-message-sub-flow"/>
+        </munit:execution>
+        <munit:validation>
+            <choice>
+                <when expression="#[payload != 'smoke-test-payload']">
+                    <raise-error type="APP:ASSERTION" description="Logging sub-flow changed the payload"/>
+                </when>
+                <otherwise>
+                    <logger level="DEBUG" message="payload preserved"/>
+                </otherwise>
+            </choice>
+        </munit:validation>
+    </munit:test>
+
+</mule>
