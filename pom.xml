@@ -39,6 +39,13 @@
     </dependencies>
 
     <repositories>
+        <!-- The Exchange publish pre-check resolves from this repository; credentials come from settings.xml. -->
+        <repository>
+            <id>anypoint-exchange-v3</id>
+            <name>Anypoint Exchange</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+            <layout>default</layout>
+        </repository>
         <repository>
             <id>mulesoft-releases</id>
             <name>MuleSoft Releases Repository</name>
