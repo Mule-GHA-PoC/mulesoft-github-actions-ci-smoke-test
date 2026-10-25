@@ -1,0 +1,40 @@
+name: Mule pipeline
+
+# Pull request:         unit tests, package
+# Merge to develop:     unit tests, package, publish dev version to Exchange, deploy to Sandbox
+# Merge to main:        unit tests, package, publish release version to Exchange
+# Manual (Run workflow): deploy a published version to qa / uat / prod
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop, main]
+  workflow_dispatch:
+    inputs:
+      artifact_id:
+        description: Mule application artifactId
+        required: true
+      version:
+        description: Published Exchange version to deploy (for example 1.0.0)
+        required: true
+      environment:
+        description: Target environment
+        type: choice
+        options: [qa, uat, prod]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mule-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  pipeline:
+    uses: Mule-GHA-PoC/mulesoft-github-actions/.github/workflows/mule-pipeline.yml@main
+    with:
+      artifact_id: ${{ inputs.artifact_id }}
+      version: ${{ inputs.version }}
+      environment: ${{ inputs.environment }}
+    secrets: inherit
