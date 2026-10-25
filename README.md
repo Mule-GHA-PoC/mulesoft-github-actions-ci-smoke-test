@@ -1,7 +1,7 @@
 # mulesoft-github-actions-ci-smoke-test
 
 Minimal Mule 4 application used to test the
-[mulesoft-github-actions](https://github.com/nsripriya731/mulesoft-github-actions) CI/CD framework.
+[mulesoft-github-actions](https://github.com/Mule-GHA-PoC/mulesoft-github-actions) CI/CD framework.
 
 The application makes no external calls. A scheduled flow logs one line per minute through a sub-flow,
 and an MUnit test checks that the sub-flow leaves the payload unchanged.
@@ -47,4 +47,4 @@ Variables (repository, or the `Sandbox` environment):
 Secrets (`Sandbox` environment or repository): either `ANYPOINT_CLIENT_ID` and `ANYPOINT_CLIENT_SECRET`,
 or `ANYPOINT_USERNAME` and `ANYPOINT_PASSWORD`. See the framework's `docs/setup.md`.
 
-Setup commands are in the framework's [docs/setup.md](https://github.com/nsripriya731/mulesoft-github-actions/blob/main/docs/setup.md).
+Setup commands are in the framework's [docs/setup.md](https://github.com/Mule-GHA-PoC/mulesoft-github-actions/blob/main/docs/setup.md).

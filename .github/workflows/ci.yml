@@ -1,6 +1,6 @@
 name: Mule CI
 
-# Caller for the reusable framework pipeline in nsripriya731/mulesoft-github-actions.
+# Caller for the reusable framework pipeline in Mule-GHA-PoC/mulesoft-github-actions.
 #
 #   pull_request -> develop|main : checks only (no secrets, no publish, no deploy)
 #   push develop                 : checks, Exchange publish (dev version), auto-deploy to Sandbox
@@ -28,14 +28,14 @@ concurrency:
 jobs:
   pr-checks:
     if: ${{ github.event_name == 'pull_request' }}
-    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    uses: Mule-GHA-PoC/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
     with:
       publish: false
       deploy: false
 
   develop:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/develop' }}
-    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    uses: Mule-GHA-PoC/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
     with:
       publish: true
       deploy: true
@@ -44,14 +44,14 @@ jobs:
 
   main-checks:
     if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    uses: Mule-GHA-PoC/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
     with:
       publish: false
       deploy: false
 
   release:
     if: ${{ github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v') }}
-    uses: nsripriya731/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
+    uses: Mule-GHA-PoC/mulesoft-github-actions/.github/workflows/reusable-mule-ci.yml@main
     with:
       publish: true
       deploy: false
