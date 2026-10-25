@@ -9,7 +9,7 @@
       The version here is the base version; the CI workflow overrides it per run
       (see docs in mulesoft-github-actions/docs/architecture.md).
     -->
-    <groupId>2c8e6260-fcfd-45dd-91bf-78e0cef1ddf4</groupId>
+    <groupId>63d2c776-5199-4d58-833b-ce35f9237646</groupId>
     <artifactId>mulesoft-github-actions-ci-smoke-test</artifactId>
     <version>1.0.0</version>
     <packaging>mule-application</packaging>
@@ -25,7 +25,7 @@
         <munit.version>3.7.5</munit.version>
         <munit.maven.plugin.version>3.7.5</munit.maven.plugin.version>
         <!-- Anypoint organization ID; used by the Exchange distributionManagement URL. -->
-        <anypoint.org.id>2c8e6260-fcfd-45dd-91bf-78e0cef1ddf4</anypoint.org.id>
+        <anypoint.org.id>63d2c776-5199-4d58-833b-ce35f9237646</anypoint.org.id>
     </properties>
 
     <dependencies>
