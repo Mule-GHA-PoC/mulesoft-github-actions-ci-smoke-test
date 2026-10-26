@@ -8,7 +8,7 @@
     -->
     <groupId>63d2c776-5199-4d58-833b-ce35f9237646</groupId>
     <artifactId>mulesoft-github-actions-ci-smoke-test</artifactId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>mule-application</packaging>
     <name>mulesoft-github-actions-ci-smoke-test</name>
 

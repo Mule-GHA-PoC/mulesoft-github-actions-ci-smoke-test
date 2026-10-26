@@ -22,7 +22,8 @@ on:
       environment:
         description: Target environment
         type: choice
-        options: [qa, uat, prod]
+        options: [Sandbox, qa, uat, prod]
+        default: Sandbox
 
 permissions:
   contents: read
