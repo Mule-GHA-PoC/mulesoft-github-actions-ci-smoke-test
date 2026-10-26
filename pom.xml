@@ -8,14 +8,14 @@
     -->
     <groupId>63d2c776-5199-4d58-833b-ce35f9237646</groupId>
     <artifactId>mulesoft-github-actions-ci-smoke-test</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>mule-application</packaging>
     <name>mulesoft-github-actions-ci-smoke-test</name>
 
     <scm>
         <connection>scm:git:https://github.com/Mule-GHA-PoC/mulesoft-github-actions-ci-smoke-test.git</connection>
         <developerConnection>scm:git:https://github.com/Mule-GHA-PoC/mulesoft-github-actions-ci-smoke-test.git</developerConnection>
-        <tag>v1.0.1</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <properties>
