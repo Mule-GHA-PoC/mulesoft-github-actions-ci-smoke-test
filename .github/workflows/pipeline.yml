@@ -8,7 +8,7 @@ name: Mule pipeline
 
 on:
   pull_request:
-    branches: [develop, main]
+    branches: [develop]
   push:
     branches: [develop, main]
   workflow_dispatch:
